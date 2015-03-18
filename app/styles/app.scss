@@ -95,7 +95,7 @@ ul {
   list-style-type: none;
 }
 
-.intro {
+#intro {
   height: 450px;
   width: 1000px;
   text-align: center;
@@ -120,7 +120,7 @@ ul {
   width: 49%;
   }
 
-  .sections{
+#sections{
   width: 1000px;
   display: block;
   /* position: absolute; */
@@ -168,7 +168,7 @@ ul {
   /* border: 5px solid $secondary-color; */
 }
 
-.search {
+#search {
   position: relative;
   margin: 50px 0;
   /* padding: 50px; */
@@ -194,7 +194,7 @@ ul {
   padding: 10px;
 }
 
-.login, .contact {
+.login, #contact {
   /* display: block; */
   position: relative;
   margin-top: 50px;
