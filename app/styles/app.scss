@@ -97,7 +97,7 @@ ul {
 
 .intro {
   height: 450px;
-  width: 900px;
+  width: 1000px;
   text-align: center;
   vertical-align: middle;
   }
@@ -121,7 +121,7 @@ ul {
   }
 
   .sections{
-  width: 900px;
+  width: 1000px;
   display: block;
   /* position: absolute; */
   margin: 50px 0;
@@ -129,27 +129,32 @@ ul {
   text-align: center;
   clear: left;
   /* height: 300px; */
+
+  p{
+    text-align: justify;
+    text-justify: inter-word;
+  }
 }
 
 .sections_fontsearch {
   display: inline-block;
   float: left;
-  padding: 20px;
-  width: 270px;
+  padding: 30px;
+  width: 300px;
 }
 
 .sections_chatroom {
   display: inline-block;
   float: left;
-  padding: 20px;
-  width: 260px;
+  padding: 30px;
+  width: 300px;
 }
 
 .sections_contact {
   display: inline-block;
   display: inline-block;
-  padding: 20px;
-  width: 270px;
+  padding: 30px;
+  width: 300px;
 }
 
 .mega-octicon {
@@ -167,7 +172,7 @@ ul {
   position: relative;
   margin: 50px 0;
   /* padding: 50px; */
-  width: 900px;
+  width: 1000px;
   /* height: 350px; */
 }
 
@@ -193,7 +198,7 @@ ul {
   /* display: block; */
   position: relative;
   margin-top: 50px;
-  width: 900px;
+  width: 1000px;
   padding: 50px;
   text-align: center;
   clear: left;
