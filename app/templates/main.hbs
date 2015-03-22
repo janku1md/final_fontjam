@@ -13,7 +13,7 @@
           <li><a href="#intro">ABOUT FONT JAM</a></li>
           <li><a href="#search">SEARCH FONT JAM</a></li>
           <li><a href="#chatroom">LET'S TALK FONTS</a></li>
-          <!-- <li><a href=".contact">CONTACT US</a></li> -->
+          <li><a href="#contact">HIRE ME</a></li>
         </ul>
       </div>
     </header>
@@ -32,19 +32,19 @@
 <div class="orange-container">
     <div id="sections">
       <div class="sections_fontsearch">
-        <span class="mega-octicon octicon-book"></span><br>
+        <div id='mega-octicon1' class="mega-octicon octicon-book"></div><br>
         <h2>Find Your Font</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ab quia ad repellendus, quibusdam autem accusamus quos facilis consectetur quas incidunt! Expedita delectus distinctio nesciunt repellendus ipsam, aliquam iste dolore.</p>
         <button><a href="#search">Search</a></button>
       </div>
       <div class="sections_chatroom">
-        <span class="mega-octicon octicon-comment-discussion"></span><br>
+        <div id='mega-octicon2' class="mega-octicon octicon-comment-discussion"></div><br>
         <h2>Let's Discuss</h2>
         <p>Lorem ipsum dolor sit amet. Ratione ad labore ab soluta, expedita, doloremque omnis blanditiis corporis saepe mollitia aliquid exercitationem quas, accusantium veniam sequi quibusdam? Deserunt, quia, vel. Lorem ipsum dolor sit amet.</p>
         <button><a href="#chatroom">Chat</a></button>
     </div>
       <div class="sections_contact">
-        <span class="mega-octicon octicon-mail"></span><br>
+        <div id='mega-octicon3' class="mega-octicon octicon-mail"></div><br>
         <h2>Contact Us</h2>
         <p>  Lorem ipsum dolor sit amet, bobby doody consectetur adipisicing elit. In eaque perferendis iusto illum dolore, sint inventore tenetur quas, vero, deserunt animi ut est at enim, ducimus. Corporis eaque reprehenderit ut!</p>
         <button><a href="#contact">Say Hello</a></button>
@@ -54,28 +54,30 @@
 
     <div id="search">
       <h1>Search Fonts</h1>
-      <input type="text" placeholder="Type Your Font Name"><button>Search</button><br>
-
 
       <div class="search_left">
-        <h4>Top Complimentary Fonts</h4>
-        <ul class="search_result_left">
-          <li>Helvetica</li>
-          <li>Sans Serif</li>
-          <li>Script</li>
-        </ul>
+        <form {{action "search" on="submit"}} method="post">
+        {{input value=searchBar placeholder="Search Font Class"}}
+        <button>Search</button>
+        </form>
       </div>
 
 
     <div class="search_right">
-      <h4>More Fonts</h4>
-      <ul>
-        <li>Font</li>
-        <li>Font</li>
-        <li>Font</li>
-        <li>Font</li>
-        <li>Font</li>
-        <li>Font</li>
+      <h4>Top Complimentary Fonts</h4>
+
+      <ul class="results">
+
+      {{#each result in searchResults}}
+      <li class="result">
+        <!-- <img class="result-image" {{bind-attr src=result.thumbnail.[0]}}> -->
+
+      <div class="font-text">
+        <h3 class="font-title">{{result.name.[0].value}}</h3>
+        <!-- <p class="result-description">{{{result.description.[0]}}}</p> -->
+      </div>
+      </li>
+      {{/each}}
       </ul>
     </div>
   </div>
@@ -102,7 +104,11 @@
       </form>
     </div>
       <div class="chat">
-        <h1>Let's Chat {username}!</h1>
+        <h1>Let's Chat
+        {{#if username}}
+            , {{username}}
+        {{/if}}
+        !</h1>
         <textarea name="" id="commentbox" cols="75" rows="10" placeholder="What's on your mind?"></textarea><br>
         <button>Submit</button>
         <ul>
@@ -114,7 +120,7 @@
     </div>
   <div class="orange-container">
     <div id="contact">
-          <h3>Matt Jankun   |   (678) 205-7815    |   matt@jankuncreative.com   |   Jankun Creative Studio, LLC</h3>
+          <h3>Matt Jankun   |   (678) 205-7815    |   mattjankun@yahoo.com</h3>
       <!-- <form action="">
         <h1>Contact Us</h1>
         <input type="text" placeholder="Name">
