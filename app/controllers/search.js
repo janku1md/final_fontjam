@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
 
   actions: {
     search: function() {
+      console.log(this.get('searchBar'));
       var searchBar = this.get('searchBar');
       this.findQuery(searchBar);
     },
