@@ -85,87 +85,83 @@ import ajax from 'ic-ajax';
 //
 export default Ember.Controller.extend({
 
-  actions: {
-    search: function() {
-      var searchTerm = this.get('searchBar');
-      this.findQuery(searchTerm);
-    },
-
+actions: {
+ search: function() {
+   // example search term: display
+   var searchTerm = this.get('searchBar');
+   this.findQuery(searchTerm);
+ },
 },
 
 findQuery: function(searchTerm) {
-  var fontUrl = 'http://www.fontsquirrel.com/api/fontlist/';
-  var searchUrl = (fontUrl + searchTerm);
-  console.log(searchUrl);
-  this.findAll(searchUrl);
+   var base = 'http://jsonp.afeld.me/?callback=?';
+   var fontUrl = '&url=http://www.fontsquirrel.com/api/fontlist/';
+   var searchUrl = (base + fontUrl + searchTerm);
+   this.findAll(searchUrl);
+
+ // search term display generates searchUrl:
+ // http://jsonp.afeld.me/?callback=&url=http://www.fontsquirrel.com/api/fontlist/display
 },
 
 findAll: function(searchUrl) {
-  /* jshint unused: false */
-  console.log('findAll');
-  var self = this;
-  return ajax({
-    url: searchUrl,
-    type: 'GET',
-  }).then(function(data){
-    console.log(data);
-  });
-  // return ajax(searchUrl).then(function(data){
-  //   self.set('this.searchResults', data);
-  //   console.log(data);
-  // });
-},
 
+ $.getJSON(searchUrl, function(data){
+ alert('fake AJAX! ' + data.awesome);
+});
+ // return ajax(searchUrl).then(function(data) {
+ //   console.log(data);
+ // });
+},
 });
 
 
-
-// Create the XHR object.
-function createCORSRequest(method, url) {
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
-    // XHR for Chrome/Firefox/Opera/Safari.
-    xhr.open(method, url, true);
-  } else if (typeof XDomainRequest != "undefined") {
-    // XDomainRequest for IE.
-    xhr = new XDomainRequest();
-    xhr.open(method, url);
-  } else {
-    // CORS not supported.
-    xhr = null;
-  }
-  return xhr;
-}
-
-// Helper method to parse the title tag from the response.
-function getTitle(text) {
-  return text.match('<title>(.*)?</title>')[1];
-}
-
-// Make the actual CORS request.
-function makeCorsRequest() {
-  // All HTML5 Rocks properties support CORS.
-  var url = 'http://updates.html5rocks.com';
-
-  var xhr = createCORSRequest('GET', url);
-  if (!xhr) {
-    alert('CORS not supported');
-    return;
-  }
-
-  // Response handlers.
-  xhr.onload = function() {
-    var text = xhr.responseText;
-    var title = getTitle(text);
-    alert('Response from CORS request to ' + url + ': ' + title);
-  };
-
-  xhr.onerror = function() {
-    alert('Woops, there was an error making the request.');
-  };
-
-  xhr.send();
-}
+//
+// // Create the XHR object.
+// function createCORSRequest(method, url) {
+//   var xhr = new XMLHttpRequest();
+//   if ("withCredentials" in xhr) {
+//     // XHR for Chrome/Firefox/Opera/Safari.
+//     xhr.open(method, url, true);
+//   } else if (typeof XDomainRequest != "undefined") {
+//     // XDomainRequest for IE.
+//     xhr = new XDomainRequest();
+//     xhr.open(method, url);
+//   } else {
+//     // CORS not supported.
+//     xhr = null;
+//   }
+//   return xhr;
+// }
+//
+// // Helper method to parse the title tag from the response.
+// function getTitle(text) {
+//   return text.match('<title>(.*)?</title>')[1];
+// }
+//
+// // Make the actual CORS request.
+// function makeCorsRequest() {
+//   // All HTML5 Rocks properties support CORS.
+//   var url = 'http://updates.html5rocks.com';
+//
+//   var xhr = createCORSRequest('GET', url);
+//   if (!xhr) {
+//     alert('CORS not supported');
+//     return;
+//   }
+//
+//   // Response handlers.
+//   xhr.onload = function() {
+//     var text = xhr.responseText;
+//     var title = getTitle(text);
+//     alert('Response from CORS request to ' + url + ': ' + title);
+//   };
+//
+//   xhr.onerror = function() {
+//     alert('Woops, there was an error making the request.');
+//   };
+//
+//   xhr.send();
+// }
 
 
 
