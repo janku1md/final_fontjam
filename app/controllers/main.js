@@ -1,169 +1,127 @@
 import Ember from 'ember';
 import ajax from 'ic-ajax';
-
-// // login functionality //  /////////////////////////////////////////
-//
-// export default Ember.ObjectController.extend({
-//   // needs: ['username'],
-//   // isAuth: Ember.computed.alias('controllers.login'),
-//   isAuth: false,
-//   email: '',
-//   username: '',
-//   password: '',
-//   userObject: function() {
-//     return {
-//       email: this.get('email'),
-//       password: this.get('password'),
-//       username: this.get('username')
-//     };
-//   }.property('email', 'password', 'username'),
-//
-//
-//   actions: {
-//     resetInputs: function() {
-//       this.set('email', '');
-//       this.set('password', '');
-//       this.set('username', '');
-//     },
-//
-//     login: function() {
-//       var self = this;
-//       return Ember.$.ajax({
-//         url: "https://api.parse.com/1/login",
-//         type: "GET",
-//         data: this.get('userObject')
-//       }).then(function(data) {
-//         self.set("isAuth", data);
-//         Ember.$.ajaxSetup({
-//           headers: {
-//             "X-Parse-Session-Token": data.sessionToken
-//           }
-//         });
-//         console.log("Logged in!");
-//         data.id = data.objectId;
-//         delete data.objectId;
-//         self.set('email', '');
-//         self.set('password', '');
-//         self.set('username', '');
-//         self.send('reload');
-//         self.transitionToRoute("user.profile", data);
-//       });
-//     },
-//     logout: function() {
-//       this.set("isAuth", null);
-//       Ember.$.ajaxSetup({
-//         headers: {
-//           "X-Parse-Session-Token": null
-//         }
-//       });
-//       console.log("Logged out!");
-//       this.set('email', '');
-//       this.set('password', '');
-//       this.set('username', '');
-//       this.send("reload");
-//     },
-//     newUser: function() {
-//       return Ember.$.ajax({
-//         url: "https://api.parse.com/1/users",
-//         type: "POST",
-//         data: JSON.stringify(this.get('userObject'))
-//       }).then(function(data) {
-//         console.log(data);
-//         });
-//       }
-//   }
-// });
+import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
 
 
+export default Ember.Controller.extend(LoginControllerMixin, {
+  authenticator: 'authenticator:parse-email',
+  //needs: ['user'],
+  // isAuth: Ember.computed.alias('controllers.login'),
+  email: '',
+  password: '',
+  userObject: function() {
+    return {
+      email: this.get('email'),
+      password: this.get('password')
+    };
+  }.property('email', 'password'),
 
 
+  actions: {
+    resetInputs: function() {
+      this.set('email', '');
+      this.set('password', '');
+    },
 
+    // login: function() {
+    //   var self = this;
+    //   return Ember.$.ajax({
+    //     url: "https://api.parse.com/1/login",
+    //     type: "GET",
+    //     data: this.get('userObject')
+    //   }).then(function(data) {
+    //     self.set("isAuth", data);
+    //     Ember.$.ajaxSetup({
+    //       headers: {
+    //         "X-Parse-Session-Token": data.sessionToken
+    //       }
+    //     });
+    //     console.log("Logged in!");
+    //     data.id = data.objectId;
+    //     delete data.objectId;
+    //     self.set('email', '');
+    //     self.set('password', '');
+    //     self.send('reload');
+    //     self.transitionToRoute("user.profile", data);
+    //   });
+    // },
 
-// // search functionality //  ////////////////////////////////////////
-//
-//
-//
-export default Ember.Controller.extend({
+    // authenticate: function(credentials) {
+    //   var token = credentials.sessionToken;
+    //   if(token){ this.set('sessionToken', token); }
+    //   var endpoint = token ? 'users/me' : 'login';
+    //   var options = token ? {} : {
+    //     data: {
+    //       username: credentials.identification,
+    //       password: credentials.password
+    //     }
+    //   };
+    //
+    //   return ajax('https://api.parse.com/1/' + endpoint, options).then(function(response) {
+    //     this.set('sessionToken', response.sessionToken);
+    //     return {sessionToken: response.sessionToken};
+    //   }.bind(this));
+    // },
 
-actions: {
- search: function() {
-   // example search term: display
-   var searchTerm = this.get('searchBar');
-   this.findQuery(searchTerm);
- },
-},
+    logout: function() {
+      this.set("isAuth", null);
+      Ember.$.ajaxSetup({
+        headers: {
+          "X-Parse-Session-Token": null
+        }
+      });
+      console.log("Logged out!");
+      this.set('email', '');
+      this.set('password', '');
+      this.set('username', '');
+      this.send("reload");
+    },
 
-findQuery: function(searchTerm) {
-   var base = 'http://jsonp.afeld.me/?callback=?';
-   var fontUrl = '&url=http://www.fontsquirrel.com/api/fontlist/';
-   var searchUrl = (base + fontUrl + searchTerm);
-   this.findAll(searchUrl);
+    newUser: function() {
+      return Ember.$.ajax({
+        url: "https://api.parse.com/1/users",
+        type: "POST",
+        data: JSON.stringify(this.get('userObject'))
+      }).then(function(data) {
+        console.log(data);
+      });
+    },
 
- // search term display generates searchUrl:
- // http://jsonp.afeld.me/?callback=&url=http://www.fontsquirrel.com/api/fontlist/display
-},
+    save: function() {
+      var self = this;
+      var user = this.get('model');
+      user.username = user.email;
+      user.save().then(function() {
+        self.get('session').authenticate('authenticator:parse-email', user);
+      });
+      this.transitionToRoute('options');
+    },
 
-findAll: function(searchUrl) {
+    search: function() {
+      // example search term: display
+      var searchTerm = this.get('searchBar');
+      this.findQuery(searchTerm);
+    },
+   },
 
- $.getJSON(searchUrl, function(data){
- alert('fake AJAX! ' + data.awesome);
+   findQuery: function(searchTerm) {
+      var base = 'http://jsonp.afeld.me/?callback=?';
+      var fontUrl = '&url=http://www.fontsquirrel.com/api/fontlist/';
+      var searchUrl = (base + fontUrl + searchTerm);
+      this.findAll(searchUrl);
+
+    // search term display generates searchUrl:
+    // http://jsonp.afeld.me/?callback=&url=http://www.fontsquirrel.com/api/fontlist/display
+   },
+
+   findAll: function(searchUrl) {
+
+    $.getJSON(searchUrl, function(data){
+    alert('Hi');
+   });
+  //   return ajax(searchUrl).then(function(data) {
+  //     console.log(data);
+  //   });
+   },
+
 });
- // return ajax(searchUrl).then(function(data) {
- //   console.log(data);
- // });
-},
-});
-
-
-//
-// // Create the XHR object.
-// function createCORSRequest(method, url) {
-//   var xhr = new XMLHttpRequest();
-//   if ("withCredentials" in xhr) {
-//     // XHR for Chrome/Firefox/Opera/Safari.
-//     xhr.open(method, url, true);
-//   } else if (typeof XDomainRequest != "undefined") {
-//     // XDomainRequest for IE.
-//     xhr = new XDomainRequest();
-//     xhr.open(method, url);
-//   } else {
-//     // CORS not supported.
-//     xhr = null;
-//   }
-//   return xhr;
-// }
-//
-// // Helper method to parse the title tag from the response.
-// function getTitle(text) {
-//   return text.match('<title>(.*)?</title>')[1];
-// }
-//
-// // Make the actual CORS request.
-// function makeCorsRequest() {
-//   // All HTML5 Rocks properties support CORS.
-//   var url = 'http://updates.html5rocks.com';
-//
-//   var xhr = createCORSRequest('GET', url);
-//   if (!xhr) {
-//     alert('CORS not supported');
-//     return;
-//   }
-//
-//   // Response handlers.
-//   xhr.onload = function() {
-//     var text = xhr.responseText;
-//     var title = getTitle(text);
-//     alert('Response from CORS request to ' + url + ': ' + title);
-//   };
-//
-//   xhr.onerror = function() {
-//     alert('Woops, there was an error making the request.');
-//   };
-//
-//   xhr.send();
-// }
-
-
-
-
-//////  // forum functionality //  ////////////////////////////////////

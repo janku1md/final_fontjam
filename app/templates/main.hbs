@@ -70,11 +70,8 @@
 
       {{#each result in searchResults}}
       <li class="result">
-        <!-- <img class="result-image" {{bind-attr src=result.thumbnail.[0]}}> -->
-
       <div class="font-text">
-        <h3 class="font-title">{{result.name.[0].value}}</h3>
-        <!-- <p class="result-description">{{{result.description.[0]}}}</p> -->
+        <h3 class="font-title">{{result.family_name.[0].value}}{{family_name}}</h3>
       </div>
       </li>
       {{/each}}
@@ -84,31 +81,26 @@
 
     <div id="chatroom">
       <div class="orange-container">
-      <form action="">
-        <div class="login">
-          <h1>Chat Room</h1>
-          <h4>Log-In/Registration</h4>
-          <form>
-          {{input value=email placeholder="E-Mail"}}
-          {{input type="password" value=password placeholder="Password"}}
-          {{input value=username placeholder="Username"}}
-          <br>
-          {{#if model }}
-            <button {{action "logout" user}}>Logout</button>
-          {{else}}
-            <button {{action "login" user}}>Login</button>
-          {{/if}}
-          <button {{action "newUser" user}}>New?</button>
-          </form>
-        </div>
-      </form>
+        <form {{action 'authenticate' on="submit"}}>
+          <fieldset>
+            <div class="login-form">
+
+              {{input value=identification placeholder='Enter Email' type='email' }}
+
+              {{input value=password placeholder='Enter Password' type='password' }}<br>
+
+              <button type="submit">Login</button>
+            </div>
+
+          </fieldset>
+        </form>
     </div>
       <div class="chat">
         <h1>Let's Chat
         {{#if username}}
-            , {{username}}
-        {{/if}}
-        !</h1>
+          , {{username}}
+        {{/if}}!</h1>
+        {{#if session.isAuthenticated}}<h1>logged in</h1>{{/if}}
         <textarea name="" id="commentbox" cols="75" rows="10" placeholder="What's on your mind?"></textarea><br>
         <button>Submit</button>
         <ul>
@@ -118,20 +110,15 @@
         </ul>
       </div>
     </div>
+
   <div class="orange-container">
     <div id="contact">
           <h3>Matt Jankun   |   (678) 205-7815    |   mattjankun@yahoo.com</h3>
-      <!-- <form action="">
-        <h1>Contact Us</h1>
-        <input type="text" placeholder="Name">
-        <input type="email" placeholder="E-Mail"><br>
-        <textarea name="comments" id="commentbox" cols="75" rows="10" placeholder="How Can We Help You?"></textarea><br>
-        <button>Submit</button>
-      </form> -->
+
     </div>
   </div>
     <footer>
-      Copyright 2015 Jankun Creative Studio
+      Copyright 2015
     </footer>
     </div>
   </body>

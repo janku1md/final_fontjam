@@ -18,6 +18,7 @@ export default Ember.ObjectController.extend({
       this.set('password', '');
       this.set('username', '');
     },
+
     login: function() {
       var self = this;
       return Ember.$.ajax({

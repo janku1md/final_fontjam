@@ -7,8 +7,26 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     contentSecurityPolicy: {
-      'connect-src': "'self' http://www.fontsquirrel.com"
+      'report-uri': "'self'",
+      'default-src': "'none'",
+      'script-src': "'self'",
+      'connect-src': "'self' https://api.parse.com",
+      'img-src': "'self' http://files.parsetfss.com",
+      'media-src': "'self'",
+      'font-src': "'self' data: fonts.gstatic.com",
+      'style-src': "'self' 'unsafe-inline' fonts.googleapis.com"
     },
+
+    'simple-auth': {
+      crossOriginWhitelist: ['https://api.parse.com'],
+      authorizer: 'authorizer:parse'
+    },
+
+    parseKeys: {
+      applicationId: 'cs7F7nKIT9OpYCKgnqiRiFQHh80I9AkULRHaJoI7',
+      restApi: 'ECiVuwZuMaQbEVTny4qx0XbEF493961s8Si0kk4t'
+    },
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
