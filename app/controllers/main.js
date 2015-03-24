@@ -87,15 +87,15 @@ export default Ember.Controller.extend(LoginControllerMixin, {
       });
     },
 
-    save: function() {
-      var self = this;
-      var user = this.get('model');
-      user.username = user.email;
-      user.save().then(function() {
-        self.get('session').authenticate('authenticator:parse-email', user);
-      });
-      this.transitionToRoute('options');
-    },
+    // save: function() {
+    //   var self = this;
+    //   var user = this.get('model');
+    //   user.username = user.email;
+    //   user.save().then(function() {
+    //     self.get('session').authenticate('authenticator:parse-email', user);
+    //   });
+    //   this.transitionToRoute('options');
+    // },
 
     search: function() {
       // example search term: display
