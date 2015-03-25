@@ -162,7 +162,7 @@ ul {
   margin: 50px 0;
   /* padding: 50px; */
   width: 1000px;
-  /* height: 350px; */
+  height: 350px;
 }
 
 .search_left {
@@ -181,6 +181,7 @@ ul {
   background-color: $secondary-color;
   color: white;
   padding: 10px;
+  max-height: 340px;
 }
 
 .login, #contact {

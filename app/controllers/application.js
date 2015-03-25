@@ -1,9 +1,11 @@
-/* globals $ */
-
 import Ember from 'ember';
-import ajax from 'ic-ajax';
 import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
 
+function computePath(hash) {
+  return function(){
+    return window.location.pathname + "#" + hash;
+  }.property('currentPath')
+}
 
 export default Ember.Controller.extend(LoginControllerMixin, {
   authenticator: 'authenticator:parse-email',
@@ -16,6 +18,11 @@ export default Ember.Controller.extend(LoginControllerMixin, {
     };
   }.property('email', 'password'),
 
+  searchHash: computePath('search'),
+  headerHash: computePath('header'),
+  introHash: computePath('intro'),
+  chatroomHash: computePath('chatroom'),
+  contactHash: computePath('contact'),
 
   actions: {
     resetInputs: function() {
@@ -24,10 +31,8 @@ export default Ember.Controller.extend(LoginControllerMixin, {
     },
 
     saveEdit: function() {
-      var comment = this.store.createRecord('comment', {
-        body: this.get('newComment')
-      });
-      return comment.save();
+      this.set('isEditing', false);
+      
     },
 
     saveComment: function() {
@@ -82,9 +87,7 @@ export default Ember.Controller.extend(LoginControllerMixin, {
     search: function() {
       // example search term: display
       var searchTerm = this.get('searchBar');
-      this.store.findQuery('font', searchTerm).then(function(response){
-        console.log(response);
-      });
+      this.transitionToRoute('search', searchTerm);
     },
    },
 

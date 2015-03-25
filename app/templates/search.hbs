@@ -1,0 +1,7 @@
+<ul class="results">
+{{#each result in model}}
+<li class="result">
+  <h3>{{result.family_name}}{{result.classification}}<a rel="stylesheet" target="_blank" {{bind-attr href=result.url}}>Find Font</a></h3>
+</li>
+{{/each}}
+</ul>
