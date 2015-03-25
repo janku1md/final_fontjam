@@ -131,6 +131,7 @@ export default Ember.Controller.extend(LoginControllerMixin, {
       // example search term: display
       var searchTerm = this.get('searchBar');
       this.findQuery(searchTerm);
+
     },
    },
 
@@ -139,15 +140,18 @@ export default Ember.Controller.extend(LoginControllerMixin, {
       var fontUrl = '&url=http://www.fontsquirrel.com/api/fontlist/';
       var searchUrl = (base + fontUrl + searchTerm);
       this.findAll(searchUrl);
+      console.log(arguments);
+      console.log(searchUrl);
 
     // search term display generates searchUrl:
     // http://jsonp.afeld.me/?callback=&url=http://www.fontsquirrel.com/api/fontlist/display
    },
 
    findAll: function(searchUrl) {
-
+     /* jshint unused: false */
     $.getJSON(searchUrl, function(data){
-      alert('Hi');
+      // alert('Hi');
+      console.log(data);
    });
   //   return ajax(searchUrl).then(function(data) {
   //     console.log(data);

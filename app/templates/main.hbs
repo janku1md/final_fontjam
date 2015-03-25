@@ -64,15 +64,16 @@
 
 
     <div class="search_right">
-      <h4>Top Complimentary Fonts</h4>
+      <h4>Complimentary Fonts</h4>
 
       <ul class="results">
 
       {{#each result in searchResults}}
+      <h3>Test</h3>
       <li class="result">
-      <div class="font-text">
-        <h3 class="font-title">{{result.family_name.[0].value}}{{family_name}}{{classification}}<link rel="stylesheet" href="http://www.fontsquirrel.com/fonts/"{{family_name}} target="_blank">Find Font</h3>
-      </div>
+
+        <h3>{{result.[0].classification}}<link rel="stylesheet" href="http://www.fontsquirrel.com/fonts/" + {{family_name}} target="_blank">Find Font</h3>
+
       </li>
       {{/each}}
       </ul>
