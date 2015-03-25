@@ -67,12 +67,16 @@
       <h4>Complimentary Fonts</h4>
 
       <ul class="results">
+        <!--   <li>Amaranth - Sans Serif</li>
+        <li>Capsuula - Sans Serif</li>
+        <li>Existence Light - Sans Serif</li>
+        <li>Lato- Sans Serif</li> -->
 
       {{#each result in searchResults}}
       <h3>Test</h3>
       <li class="result">
 
-        <h3>{{result.[0].classification}}<link rel="stylesheet" href="http://www.fontsquirrel.com/fonts/" + {{family_name}} target="_blank">Find Font</h3>
+        <h3>{{font_name}}{{classification}}<link rel="stylesheet" href="http://www.fontsquirrel.com/fonts/" + {{family_name}} target="_blank">Find Font</h3>
 
       </li>
       {{/each}}
