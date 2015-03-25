@@ -1,3 +1,5 @@
+/* globals $ */
+
 import Ember from 'ember';
 import ajax from 'ic-ajax';
 import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
@@ -18,10 +20,38 @@ export default Ember.Controller.extend(LoginControllerMixin, {
 
 
   actions: {
+    // saveComment: function() {
+    //     this.modelFor('comment').newComment.save();
+    // },
+
     resetInputs: function() {
       this.set('email', '');
       this.set('password', '');
     },
+
+    saveEdit: function() {
+      var comment = this.store.createRecord('comment', {
+        body: this.get('newComment')
+      });
+      return comment.save();
+    },
+
+    saveComment: function() {
+      var comment = this.store.createRecord('comment', {
+        body: this.get('newComment')
+      });
+      return comment.save();
+    },
+
+    destroyComment: function(comment) {
+      comment.destroy();
+    },
+
+    edit: function(){
+      this.set('isEditing', true);
+    },
+
+
 
     // login: function() {
     //   var self = this;
@@ -87,15 +117,15 @@ export default Ember.Controller.extend(LoginControllerMixin, {
       });
     },
 
-    // save: function() {
-    //   var self = this;
-    //   var user = this.get('model');
-    //   user.username = user.email;
-    //   user.save().then(function() {
-    //     self.get('session').authenticate('authenticator:parse-email', user);
-    //   });
-    //   this.transitionToRoute('options');
-    // },
+    save: function() {
+      var self = this;
+      var user = this.get('model');
+      user.username = user.email;
+      user.save().then(function() {
+        self.get('session').authenticate('authenticator:parse-email', user);
+      });
+      this.transitionToRoute('options');
+    },
 
     search: function() {
       // example search term: display
@@ -117,7 +147,7 @@ export default Ember.Controller.extend(LoginControllerMixin, {
    findAll: function(searchUrl) {
 
     $.getJSON(searchUrl, function(data){
-    alert('Hi');
+      alert('Hi');
    });
   //   return ajax(searchUrl).then(function(data) {
   //     console.log(data);

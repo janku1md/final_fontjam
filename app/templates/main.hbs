@@ -71,7 +71,7 @@
       {{#each result in searchResults}}
       <li class="result">
       <div class="font-text">
-        <h3 class="font-title">{{result.family_name.[0].value}}{{family_name}}</h3>
+        <h3 class="font-title">{{result.family_name.[0].value}}{{family_name}}{{classification}}<link rel="stylesheet" href="http://www.fontsquirrel.com/fonts/"{{family_name}} target="_blank">Find Font</h3>
       </div>
       </li>
       {{/each}}
@@ -96,21 +96,28 @@
         </form>
     </div>
       <div class="chat">
-        <h1>Let's Chat
-        {{#if username}}
-          , {{username}}
-        {{/if}}!</h1>
-        {{#if session.isAuthenticated}}<h1>logged in</h1>{{/if}}
-        <textarea name="" id="commentbox" cols="75" rows="10" placeholder="What's on your mind?"></textarea><br>
-        <button>Submit</button>
-        <ul>
-          <li>UserName: Fonts are good</li>
-          <li>UserName: I like script fonts</li>
-          <li>UserName: Bold is bigger</li>
-        </ul>
-      </div>
 
+      <form {{action 'save' on="submit"}} class="form-container">
+        {{textarea value=newComment}}
+        <button class="comment-button" type="submit" {{action "saveComment"}}>Submit</button>
+      </form>
 
+      {{outlet}}
+
+      <ul>
+        {{#each comment in model.comments itemController="main"}}
+          {{#if comment.isEditing}}
+            <li>{{input value=comment.model.body}}</li>
+            <button class="button comment-save" type="submit" {{action "save" comment}}>Save</button>
+          {{else}}
+            <li>{{comment.model.body}}</li>
+            <button class="button comment-edit" type="submit" {{action "edit" comment}}>Edit</button>
+            <button class="button comment-delete" type="submit" {{action "destroyComment" comment}}>Delete</button>
+          {{/if}}
+        {{/each}}
+      </ul>
+
+    </div>
 
     </div>
 

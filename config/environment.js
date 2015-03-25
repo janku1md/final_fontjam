@@ -9,7 +9,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'report-uri': "'self'",
       'default-src': "'none'",
-      'script-src': "'self'",
+      'script-src': "'self' http://jsonp.afeld.me",
       'connect-src': "'self' https://api.parse.com",
       'img-src': "'self' http://files.parsetfss.com",
       'media-src': "'self'",
