@@ -42,6 +42,10 @@ p {
   line-height: 150%
 }
 
+a {
+  text-decoration: none !important;
+}
+
 
 
 /* Guts */
@@ -59,13 +63,48 @@ body {
   background-size: cover;
 }
 
+.orange-container2 {
+  background-color: $primary-accent-color;
+  /* background-image: url('/assets/images/orange_background.jpg'); */
+  /* background-position: center; */
+  /* background-size: cover; */
+}
+
+.photo1-container {
+  /* background-color: $primary-accent-color; */
+  background-image: url('/assets/images/section_photo_1.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 350px;
+  /* background: $primary-color; */
+  /* opacity: .2; */
+  vertical-align: middle;
+  display: block;
+}
+
+.photo2-container {
+  /* background-color: $primary-accent-color; */
+  background-image: url('/assets/images/section_photo_2.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 350px;
+}
+
+.photo3-container {
+  /* background-color: $primary-accent-color; */
+  background-image: url('/assets/images/section_photo_3.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 350px;
+}
+
 .container {
   text-align: -webkit-center;
 }
 
 header {
   background-color: $primary-color;
-  background-image: src('/assets/images/font-jam_header.jpg');
+  background-image: src('/assets/images/font-jam_header.png');
   height: 445px;
   text-align: center;
 }
@@ -85,7 +124,7 @@ header {
   }
 
   a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: white;
   }
 }
@@ -100,7 +139,7 @@ ul {
   width: 1000px;
   text-align: center;
   vertical-align: middle;
-  }
+}
 
 .intro_text {
   position: relative;
@@ -124,7 +163,7 @@ ul {
   width: 1000px;
   display: block;
   /* position: absolute; */
-  margin: 50px 0;
+  margin: 50px 0 0 0;
   padding: 50px;
   text-align: center;
   clear: left;
@@ -141,6 +180,10 @@ ul {
   float: left;
   padding: 30px;
   width: 300px;
+  a {
+    text-decoration: none !important;
+    color: white;
+  }
 }
 
 .sections_chatroom {
@@ -148,6 +191,10 @@ ul {
   float: left;
   padding: 30px;
   width: 300px;
+  a {
+    text-decoration: none !important;
+    color: white;
+  }
 }
 
 .sections_contact {
@@ -155,6 +202,10 @@ ul {
   display: inline-block;
   padding: 30px;
   width: 300px;
+  a {
+    text-decoration: none !important;
+    color: white;
+  }
 }
 
 #search {
@@ -162,36 +213,61 @@ ul {
   margin: 50px 0;
   /* padding: 50px; */
   width: 1000px;
-  height: 350px;
+  /* height: 500px; */
 }
 
 .search_left {
   float: left;
-  width: 25%;
+  width: 40%;
+  text-align: right;
   /* margin: 20px 0; */
   padding: 10px;
 }
 
 .search_right {
   display: inline-block;
-  width: 75%;
+  width: 50%;
   /* margin: 10px; */
-  padding: 10px 0px;
+  padding: 10px 0;
   border-radius: 15px;
-  background-color: $secondary-color;
-  color: white;
-  padding: 10px;
-  max-height: 340px;
+  border: 5px black solid;
+  background-color: #48463c;
+  color: $primary-color;
+  padding: 0 0 20px 30px;
+  max-height: 480px;
+  overflow-x: hidden;
+  text-align: left;
 }
+
+.results {
+  color: white;
+  text-align: left;
+  }
+  a {
+    /* font-style: italic; */
+    text-align: right;
+    color: #897968;
+  }
 
 .login, #contact {
   /* display: block; */
   position: relative;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   width: 1000px;
   padding: 50px;
   text-align: center;
   clear: left;
+}
+
+.chat {
+  width: 800px;
+  li {
+    border: 1px $primary-color solid;
+    border-radius: 15px;
+    margin: 20px;
+    padding: 10px;
+    text-align: left;
+  }
 }
 
 footer {
@@ -207,13 +283,29 @@ footer {
 button {
   margin: 0 20px;
   padding: 10px 20px;
-  border-radius: 15px;
+  border-radius: 5px;
   background-color: $primary-color;
   color: white;
   border: 2px solid $secondary-color;
   font-size: 75%;
   letter-spacing: 3px;
-  text-decoration: none;
+  text-decoration: none !important;
+  color: white;
+  list-style-type: none;
+}
+
+button.button-comment-save,
+button.button-comment-edit,
+button.button-comment-delete{
+  /* margin: 0 20px; */
+  /* padding: 10px 20px; */
+  /* border-radius: 5px; */
+  /* background-color: $primary-color; */
+  color: black;
+  /* border: 2px solid $secondary-color; */
+  font-size: 55%;
+  letter-spacing: 3px;
+  text-decoration: none !important;
   color: white;
   list-style-type: none;
 }

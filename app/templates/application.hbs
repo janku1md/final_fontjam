@@ -6,7 +6,7 @@
   <body>
   <div class="container">
     <header id="header">
-      <div class="logo"><img src="assets/images/font-jam_header.jpg" alt="background image"></div>
+      <div class="logo"><img src="assets/images/font-jam_header.png" alt="background image"></div>
       <div class="menu">
         <ul>
           <li><a {{bind-attr href=headerHash}}>HOME</a></li>
@@ -35,47 +35,63 @@
         <div id='mega-octicon1' class="mega-octicon octicon-book"></div><br>
         <h2>Find Your Font</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ab quia ad repellendus, quibusdam autem accusamus quos facilis consectetur quas incidunt! Expedita delectus distinctio nesciunt repellendus ipsam, aliquam iste dolore.</p>
-        <button><a href="#search">Search</a></button>
+        <button><a {{bind-attr href=searchHash}}>Search</a></button>
       </div>
       <div class="sections_chatroom">
         <div id='mega-octicon2' class="mega-octicon octicon-comment-discussion"></div><br>
         <h2>Let's Discuss</h2>
         <p>Lorem ipsum dolor sit amet. Ratione ad labore ab soluta, expedita, doloremque omnis blanditiis corporis saepe mollitia aliquid exercitationem quas, accusantium veniam sequi quibusdam? Deserunt, quia, vel. Lorem ipsum dolor sit amet.</p>
-        <button><a href="#chatroom">Chat</a></button>
+        <button><a {{bind-attr href=chatroomHash}}>Chat</a></button>
     </div>
       <div class="sections_contact">
         <div id='mega-octicon3' class="mega-octicon octicon-mail"></div><br>
         <h2>Contact Us</h2>
         <p>  Lorem ipsum dolor sit amet, bobby doody consectetur adipisicing elit. In eaque perferendis iusto illum dolore, sint inventore tenetur quas, vero, deserunt animi ut est at enim, ducimus. Corporis eaque reprehenderit ut!</p>
-        <button><a href="#contact">Say Hello</a></button>
+        <button><a {{bind-attr href=contactHash}}>Say Hello</a></button>
     </div>
     </div>
 </div>
+<div class="photo1-container">
 
+</div>
     <div id="search">
       <h1>Search Fonts</h1>
 
       <div class="search_left">
         <form {{action "search" on="submit"}} method="post">
+          <!-- <select {{action "search" on="submit"}} method="post">
+          <option>Serif</option>
+          <option>Sans Serif</option>
+          <option>Slab Serif</option>
+          <option>Script</option>
+          <option>Handdrawn</option>
+          <option>Novelty</option>
+          <option>Calligraphic</option> -->
         {{input type='text' value=searchBar placeholder="Search Font Class"}}
-        <button>Search</button>
+        <br><<button>Search</button>
+        <!-- </select> -->
         </form>
       </div>
 
 
     <div class="search_right">
-      <h4>Complimentary Fonts</h4>
+      <h2>Complimentary Fonts</h2>
 
       {{outlet}}
 
     </div>
   </div>
+<div class="photo2-container">
 
+
+
+</div>
     <div id="chatroom">
-      <div class="orange-container">
+      <div class="orange-container2">
         <form {{action 'authenticate' on="submit"}}>
           <fieldset>
             <div class="login-form">
+              <h1>Log-In</h1>
 
               {{input value=identification placeholder='Enter Email' type='email' }}
 
@@ -88,29 +104,38 @@
         </form>
     </div>
       <div class="chat">
-
+        <h2>Welcome to the Chatroom</h2>
+        <p>
+          This is a place where you can ask you fellow Font Jam Community members for opinions on projects you're doing and what fonts may work best.
+        </p>
       <form {{action 'save' on="submit"}} class="form-container">
         {{textarea value=newComment}}
         <button class="comment-button" type="submit" {{action "saveComment"}}>Submit</button>
       </form>
 
       <ul>
+        <div class=individualcomment>
         {{#each comment in model.comments itemController="application"}}
           {{#if comment.isEditing}}
-            <li>{{input value=comment.model.body}}</li>
-            <button class="button comment-save" type="submit" {{action "saveEdit" comment}}>Save</button>
+            <li><a {{action "saveEdit" comment}}>Save</a><br>
+              {{input value=comment.model.body}}</li>
+
           {{else}}
-            <li>{{comment.model.body}}</li>
-            <button class="button comment-edit" type="submit" {{action "edit" comment}}>Edit</button>
-            <button class="button comment-delete" type="submit" {{action "destroyComment" comment}}>Delete</button>
+            <li>{{comment.model.user}}<a {{action "edit" comment}}>Edit</a> <a {{action "destroyComment" comment}}>Delete</a><br>
+              {{comment.model.body}}</li>
+              
+
           {{/if}}
         {{/each}}
+      </div>
       </ul>
 
     </div>
 
     </div>
+<div class="photo3-container">
 
+  </div>
   <div class="orange-container">
     <div id="contact">
           <h3>Matt Jankun   |   (678) 205-7815    |   mattjankun@yahoo.com</h3>

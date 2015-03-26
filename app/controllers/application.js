@@ -31,13 +31,15 @@ export default Ember.Controller.extend(LoginControllerMixin, {
     },
 
     saveEdit: function() {
-      this.set('isEditing', false);
-      
-    },
+     this.set('isEditing', false);
+     this.get('model').save();
+   },
 
     saveComment: function() {
+      var user = this.get("session.currentUser.username");
       var comment = this.store.createRecord('comment', {
-        body: this.get('newComment')
+        body: this.get('newComment'),
+        user: user
       });
       return comment.save();
     },
