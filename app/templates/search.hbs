@@ -1,7 +1,7 @@
 <ul class="results">
 {{#each result in model}}
 <li class="result">
-  <h2>{{result.family_name}}{{result.classification}}</h2><a rel="stylesheet" target="_blank" {{bind-attr href=result.url}}>Find Font</a>
+  <h2>{{result.family_name}}{{result.classification}}</h2><a class="findfont" rel="stylesheet" target="_blank" {{bind-attr href=result.url}}>Find Font</a>
 
 </li>
 {{/each}}

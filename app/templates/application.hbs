@@ -1,5 +1,5 @@
 <head>
-    <link href="http://fonts.googleapis.com/css?family=Oswald:400,700|Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Slabo+27px' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/octicons/octicons.css">
   </head>
 
@@ -12,7 +12,7 @@
           <li><a {{bind-attr href=headerHash}}>HOME</a></li>
           <li><a {{bind-attr href=introHash}}>ABOUT FONT JAM</a></li>
           <li><a {{bind-attr href=searchHash}}>SEARCH FONT JAM</a></li>
-          <li><a {{bind-attr href=chatroomHash}}>LET'S TALK FONTS</a></li>
+          <li><a {{bind-attr href=chatroomHash}}>FONT JAM FORUM</a></li>
           <li><a {{bind-attr href=contactHash}}>HIRE ME</a></li>
         </ul>
       </div>
@@ -20,8 +20,7 @@
 
     <div id="intro">
       <div class="intro_text">
-        <h1>Welcome to Font Jam</h1>
-        <h4>...Goes Together Like Peanut Butter and Jelly!</h4>
+        <h1>Welcome to Font Jam!</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati reprehenderit expedita commodi porro. Delectus corporis repellat, adipisci beatae reprehenderit, sint mollitia laudantium itaque illo explicabo ab nobis labore? Vel, unde!</p>
       </div>
 
@@ -58,6 +57,12 @@
       <h1>Search Fonts</h1>
 
       <div class="search_left">
+        <p>
+          Have you ever needed to find a font that complimented something you were already using?<br>
+          You have found the right place! Search which ever font classification you think would got best with the font you current have.<br>
+          If you have a Script font, look for something in the San Serif Classification. If you are using a bold San Serif font, check out a crisp Serif font to compliment it.<br>
+          Do you happen to be using Comic Sans? Seriously? Seriously? If you are really reading this and looking for the answer, please leave this site. Comic Sans should never ever be used!
+        </p>
         <form {{action "search" on="submit"}} method="post">
           <!-- <select {{action "search" on="submit"}} method="post">
           <option>Serif</option>
@@ -68,14 +73,14 @@
           <option>Novelty</option>
           <option>Calligraphic</option> -->
         {{input type='text' value=searchBar placeholder="Search Font Class"}}
-        <br><<button>Search</button>
+        <<button>Search</button>
         <!-- </select> -->
         </form>
       </div>
 
 
     <div class="search_right">
-      <h2>Complimentary Fonts</h2>
+      <!-- <h2>Complimentary Fonts</h2> -->
 
       {{outlet}}
 
@@ -104,13 +109,15 @@
         </form>
     </div>
       <div class="chat">
-        <h2>Welcome to the Chatroom</h2>
+        <h2>You are entering the Font Jam Forum!</h2>
         <p>
-          This is a place where you can ask you fellow Font Jam Community members for opinions on projects you're doing and what fonts may work best.
+          This is a place where you can ask your fellow Font Jam Community members
+          for opinions on projects you're doing and what fonts may work best. Make friends,
+          ingauge in interesting topics and argue about your favorite fonts. Let the fun begin.
         </p>
       <form {{action 'save' on="submit"}} class="form-container">
-        {{textarea value=newComment}}
-        <button class="comment-button" type="submit" {{action "saveComment"}}>Submit</button>
+        {{textarea value=newComment  cols="100" rows="5" placeholder="What's on your mind?"}}
+        <br><button class="comment-button" type="submit" {{action "saveComment"}}>Submit</button>
       </form>
 
       <ul>
@@ -121,9 +128,10 @@
               {{input value=comment.model.body}}</li>
 
           {{else}}
-            <li>{{comment.model.user}}<a {{action "edit" comment}}>Edit</a> <a {{action "destroyComment" comment}}>Delete</a><br>
-              {{comment.model.body}}</li>
-              
+            <li>{{comment.model.user}}<br>
+              {{comment.model.body}}<br>
+              <a {{action "edit" comment}}>Edit</a> <a {{action "destroyComment" comment}}>Delete</a></li>
+
 
           {{/if}}
         {{/each}}
@@ -146,4 +154,7 @@
       Copyright 2015
     </footer>
     </div>
+    <script type="text/javascript">$(document).scroll(function() {
+    var y = $(document).scrollTop(), header = $(".menu"); if(y >= 445)
+    { header.css({position: "fixed", "top" : "0", "left" : "0"}); } else {header.css("position", "relative"); } });</script>
   </body>

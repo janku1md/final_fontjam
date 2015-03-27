@@ -22,23 +22,22 @@ $third-accent-color: $offyellow;
 /* Fonts */
 
 
-$primary-font: 'Oswald:700';
-$secondary-font: 'Roboto+Condensed';
+$primary-font: 'Slabo+27px';
+$secondary-font: 'Open+Sans+Condensed:300';
 
 h1,
 h2,
 h3,
 h4,
-button,
 footer {
-  font-family: $primary-font, sans-serif;
+  font-family: $primary-font, serif;
 }
 
-
+a,
 ul,
 li,
 p {
-  font-family: $secondary-font, sans-serif;
+  font-family: sans-serif;
   line-height: 150%
 }
 
@@ -64,7 +63,7 @@ body {
 }
 
 .orange-container2 {
-  background-color: $primary-accent-color;
+  background-color: $secondary-accent-color;
   /* background-image: url('/assets/images/orange_background.jpg'); */
   /* background-position: center; */
   /* background-size: cover; */
@@ -115,8 +114,10 @@ header {
   color: white;
   text-align: center;
   margin-top: -10px;
-  height: 60px;
+  height: 50px;
   width: 100%;
+  font-family: $primary-font, serif;
+  z-index: 100;
 
   li {
     display: inline-block;
@@ -128,6 +129,7 @@ header {
     color: white;
   }
 }
+
 
 ul {
   padding: 0;
@@ -143,7 +145,7 @@ ul {
 
 .intro_text {
   position: relative;
-  margin: 50px 0;
+  margin: 80px 0;
   float: left;
   padding: 50px;
   text-align: center;
@@ -213,12 +215,12 @@ ul {
   margin: 50px 0;
   /* padding: 50px; */
   width: 1000px;
-  /* height: 500px; */
+  height: 500px;
 }
 
 .search_left {
   float: left;
-  width: 40%;
+  width: 45%;
   text-align: right;
   /* margin: 20px 0; */
   padding: 10px;
@@ -226,17 +228,23 @@ ul {
 
 .search_right {
   display: inline-block;
-  width: 50%;
+  width: 40%;
   /* margin: 10px; */
   padding: 10px 0;
   border-radius: 15px;
-  border: 5px black solid;
+  border: 1px black solid;
   background-color: #48463c;
   color: $primary-color;
   padding: 0 0 20px 30px;
   max-height: 480px;
   overflow-x: hidden;
   text-align: left;
+}
+
+.findfont {
+  text-align: right;
+  color: $secondary-accent-color;
+  display: inline-block;
 }
 
 .results {
@@ -249,21 +257,30 @@ ul {
     color: #897968;
   }
 
+.results h2 {
+  display: inline-block;
+  width: 250px;
+}
+
 .login, #contact {
   /* display: block; */
   position: relative;
-  /* margin-top: 50px; */
+  /* margin-bottom: 50px; */
   width: 1000px;
   padding: 50px;
   text-align: center;
   clear: left;
 }
 
+.login-form {
+  margin-bottom: 25px;
+}
+
 .chat {
   width: 800px;
   li {
     border: 1px $primary-color solid;
-    border-radius: 15px;
+    border-radius: 5px;
     margin: 20px;
     padding: 10px;
     text-align: left;
@@ -286,12 +303,13 @@ button {
   border-radius: 5px;
   background-color: $primary-color;
   color: white;
-  border: 2px solid $secondary-color;
+  border: 1px solid $secondary-color;
   font-size: 75%;
-  letter-spacing: 3px;
+  /* letter-spacing: 3px; */
   text-decoration: none !important;
   color: white;
   list-style-type: none;
+  /* font-family: $primary-font, serif; */
 }
 
 button.button-comment-save,
@@ -304,7 +322,7 @@ button.button-comment-delete{
   color: black;
   /* border: 2px solid $secondary-color; */
   font-size: 55%;
-  letter-spacing: 3px;
+  /* letter-spacing: 3px; */
   text-decoration: none !important;
   color: white;
   list-style-type: none;
@@ -334,4 +352,8 @@ input, textarea {
 
 fieldset {
   border: 0;
+}
+
+br {
+  line-height: 50px;
 }
