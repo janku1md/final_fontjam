@@ -22,7 +22,7 @@ $third-accent-color: $offyellow;
 /* Fonts */
 
 
-$primary-font: 'Slabo+27px';
+$primary-font: 'Forum';
 $secondary-font: 'Open+Sans+Condensed:300';
 
 h1,
@@ -149,8 +149,12 @@ ul {
   float: left;
   padding: 50px;
   text-align: center;
-  width: 51%;
+  width: 50%;
+  h3{
+  text-align: justify;
+  text-justify: inter-word;
   }
+}
 
 .intro_image {
   position: relative;
@@ -277,13 +281,18 @@ ul {
 }
 
 .chat {
-  width: 800px;
+  width: 700px;
   li {
     border: 1px $primary-color solid;
     border-radius: 5px;
     margin: 20px;
     padding: 10px;
     text-align: left;
+  }
+
+  p{
+  text-align: justify;
+  text-justify: inter-word;
   }
 }
 
@@ -299,8 +308,8 @@ footer {
 
 button {
   margin: 0 20px;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 5px 10px;
+  border-radius: 2px;
   background-color: $primary-color;
   color: white;
   border: 1px solid $secondary-color;
@@ -309,6 +318,7 @@ button {
   text-decoration: none !important;
   color: white;
   list-style-type: none;
+  text-transform: uppercase;
   /* font-family: $primary-font, serif; */
 }
 
